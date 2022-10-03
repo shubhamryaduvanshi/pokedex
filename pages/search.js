@@ -5,6 +5,7 @@ import ProfileCard from "../components/ProfileCard";
 const Search = () => {
   const [foundedPokemon, setFoundedPokemon] = useState({});
   const [searchText, setSearchText] = useState("");
+  const [error, setError] = useState(false);
 
   const getPokemon = async () => {
     if (searchText) {
@@ -14,9 +15,10 @@ const Search = () => {
           return newData;
         })
         .catch((err) => {
-          alert("Please enter valid name or id.");
+          setError(true);
         });
       if (res) {
+        setError(false);
         setFoundedPokemon(res);
       }
     }
@@ -44,10 +46,16 @@ const Search = () => {
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
               />
+              {error && (
+                <div className="text-xs mt-1 text-red-500 font-medium">
+                  Not Found. Please enter valid name or id.
+                </div>
+              )}
             </div>
             {/* input container */}
             <button
               className="mt-4 md:mt-6 px-4 md:px-2 py-1 text-white rounded-md bg-slate-500"
+              style={error ? { "margin-top": "0px" } : {}}
               onClick={getPokemon}
             >
               Search
