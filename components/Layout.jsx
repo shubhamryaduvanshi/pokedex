@@ -9,7 +9,7 @@ const Layout = ({ children, pageMeta }) => {
     description:
       "Pokédex is a web application that allows you to search for your favorite Pokémon and learn more about them.",
     image:
-      "https://res.cloudinary.com/dzcmadjl1/image/upload/v1627900008/pokedex/pokedex-logo.png",
+      "/assets/images/pokedex.png",
     url: "https://pokedex-eta.vercel.app/",
     ...pageMeta,
   };

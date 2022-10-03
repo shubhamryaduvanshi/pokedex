@@ -179,7 +179,7 @@ export async function getStaticProps(context) {
       return newData;
     })
     .catch((err) => {
-      alert("Something went wrong.");
+      console.log(err);
     });
 
   const otherDetails = await fetch(
@@ -190,7 +190,7 @@ export async function getStaticProps(context) {
       return newData;
     })
     .catch((err) => {
-      alert("Something went wrong.");
+      console.log(err);
     });
   return { props: { pokemon, advanceInfo: otherDetails } };
 }
