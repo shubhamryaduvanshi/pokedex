@@ -71,6 +71,7 @@ const Search = () => {
         {foundedPokemon.name ? (
           <ProfileCard
             imageUrl={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${foundedPokemon.id}.svg`}
+            // imageUrl={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${foundedPokemon.id}.png`}
             name={foundedPokemon.name}
             detailsUrl={foundedPokemon.species?.url}
           />

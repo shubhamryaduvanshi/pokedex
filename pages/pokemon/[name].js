@@ -20,7 +20,10 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
           <div className="flex justify-evenly items-center flex-col md:flex-row mt-8 mb-4">
             <div className="p-6 ml-0 md:ml-6 lg:ml-4 border-2 border-slate-300 rounded-xl bg-gradient-to-tl from-slate-100 to-slate-300">
               <Image
-                src={pokemon?.sprites?.other?.dream_world?.front_default || pokemon?.sprites?.front_default}
+                src={
+                  pokemon?.sprites?.other?.dream_world?.front_default ||
+                  pokemon?.sprites?.front_default
+                }
                 height={280}
                 width={280}
                 alt={pokemon.name}
@@ -156,7 +159,7 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
                     <div className="text-md font-medium capitalize mr-2">
                       {data?.base_stat}
                     </div>
-                    <div className="w-32 md:w-32 h-2 bg-slate-100 rounded-full">
+                    <div className="w-32 md:w-32 h-2 bg-slate-100 rounded-full overflow-hidden">
                       <div
                         className="h-full bg-slate-600 rounded-full"
                         style={{ width: `${data?.base_stat}%` }}
@@ -202,7 +205,7 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   const res = await fetch(
     "https://pokeapi.co/api/v2/pokemon?limit=700&offset=0"
-    )
+  )
     // "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
     .then((data) => data.json())
     .then((newData) => {
