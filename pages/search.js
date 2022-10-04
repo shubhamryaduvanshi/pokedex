@@ -32,7 +32,7 @@ const Search = () => {
       }}
     >
       <div className="py-3 md:py-8 px-3 flex justify-center items-center">
-        <div className=" h-48 md:h-40 px-2 bg-slate-200 border w-full max-w-md rounded-md">
+        <div className=" h-56 md:h-44 px-2 bg-slate-200 border w-full max-w-md rounded-md">
           <p className="text-xl font-bold text-center mt-3 mb-5">Search </p>
 
           <div className="flex items-center justify-around flex-col md:flex-row">
@@ -61,6 +61,9 @@ const Search = () => {
               Search
             </button>
           </div>
+          <p className="text-sm mt-6 ml-6 text-gray-500">
+            Note: Search pokemon by id upto 700.
+          </p>
         </div>
       </div>
       {/* search container */}

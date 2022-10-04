@@ -20,7 +20,7 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
           <div className="flex justify-evenly items-center flex-col md:flex-row mt-8 mb-4">
             <div className="p-6 ml-0 md:ml-6 lg:ml-4 border-2 border-slate-300 rounded-xl bg-gradient-to-tl from-slate-100 to-slate-300">
               <Image
-                src={pokemon.sprites.other.dream_world.front_default}
+                src={pokemon?.sprites?.other?.dream_world?.front_default || pokemon?.sprites?.front_default}
                 height={280}
                 width={280}
                 alt={pokemon.name}
@@ -36,18 +36,18 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
               <div className="my-8">
                 <span className="font-semibold text-md">About :</span>{" "}
                 <span className="text-sm ">
-                  {advanceInfo.flavor_text_entries[0].flavor_text}
+                  {advanceInfo?.flavor_text_entries[0]?.flavor_text}
                 </span>
               </div>
               <div className="flex items-center w-full mb-8 pb-4 border-b">
                 <div className="font-semibold text-md md:mr-4">Type:</div>
                 <div className="flex items-center justify-evenly">
-                  {pokemon.types.map((type, index) => (
+                  {pokemon?.types.map((type, index) => (
                     <div
                       key={index}
                       className="capitalize text-white ml-4 bg-slate-600 px-4 py-1 rounded-md"
                     >
-                      {type.type.name}
+                      {type?.type?.name}
                     </div>
                   ))}
                 </div>
@@ -62,7 +62,7 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
                     Height
                   </span>
                   <span className="text-md font-medium pt-1">
-                    {getHeight(pokemon.height)}
+                    {getHeight(pokemon?.height)}
                   </span>
                 </div>
                 <div
@@ -74,7 +74,7 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
                     Weight
                   </span>
                   <span className="text-md font-medium pt-1">
-                    {getWeight(pokemon.weight)}
+                    {getWeight(pokemon?.weight)}
                   </span>
                 </div>
                 <div
@@ -86,10 +86,12 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
                     Egg Group
                   </span>
                   <span className="text-md font-medium pt-1 capitalize">
-                    {advanceInfo.egg_groups.map((data, index) => (
+                    {advanceInfo?.egg_groups?.map((data, index) => (
                       <span className="mr-1" key={index}>
                         {data.name}
-                        {index !== advanceInfo.egg_groups.length - 1 ? "," : ""}
+                        {index !== advanceInfo?.egg_groups?.length - 1
+                          ? ","
+                          : ""}
                       </span>
                     ))}
                   </span>
@@ -103,10 +105,10 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
                     Abilities
                   </span>
                   <span className="text-md font-medium pt-1">
-                    {pokemon.abilities.map((data, index) => (
+                    {pokemon?.abilities?.map((data, index) => (
                       <span className="capitalize mr-1" key={index}>
-                        {data.ability.name}
-                        {index !== pokemon.abilities.length - 1 ? "," : ""}
+                        {data?.ability?.name}
+                        {index !== pokemon?.abilities?.length - 1 ? "," : ""}
                       </span>
                     ))}
                   </span>
@@ -119,22 +121,22 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
               Statistics{" "}
             </div>
             <div className="block md:hidden">
-              {pokemon.stats.map((data, index) => (
+              {pokemon?.stats?.map((data, index) => (
                 <div
                   key={index}
                   className="flex items-center justify-between max-w-md my-2 md:my-4"
                 >
                   <div className="text-md font-medium capitalize">
-                    {data.stat.name}
+                    {data?.stat?.name}
                   </div>
                   <div className="flex items-center">
                     <div className="text-md font-medium capitalize">
-                      {data.base_stat}
+                      {data?.base_stat}
                     </div>
                     <div className="w-32 md:w-40 h-2 bg-slate-100 rounded-full ml-3">
                       <div
                         className="h-full bg-slate-600 rounded-full"
-                        style={{ width: `${data.base_stat}%` }}
+                        style={{ width: `${data?.base_stat}%` }}
                       ></div>
                     </div>
                   </div>
@@ -142,22 +144,22 @@ const Pokemon = ({ pokemon, advanceInfo }) => {
               ))}
             </div>
             <div className="hidden w-full md:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-              {pokemon.stats.map((data, index) => (
+              {pokemon?.stats?.map((data, index) => (
                 <div
                   key={index}
                   className="flex items-center flex-col  justify-between border-2 rounded-md my-2 p-4 md:my-4"
                 >
                   <div className="text-md font-medium capitalize mb-2">
-                    {data.stat.name}
+                    {data?.stat?.name}
                   </div>
                   <div className="flex items-center">
                     <div className="text-md font-medium capitalize mr-2">
-                      {data.base_stat}
+                      {data?.base_stat}
                     </div>
                     <div className="w-32 md:w-32 h-2 bg-slate-100 rounded-full">
                       <div
                         className="h-full bg-slate-600 rounded-full"
-                        style={{ width: `${data.base_stat}%` }}
+                        style={{ width: `${data?.base_stat}%` }}
                       ></div>
                     </div>
                   </div>
@@ -199,8 +201,9 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   const res = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
-  )
+    "https://pokeapi.co/api/v2/pokemon?limit=700&offset=0"
+    )
+    // "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
     .then((data) => data.json())
     .then((newData) => {
       return newData;

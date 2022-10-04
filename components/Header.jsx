@@ -13,6 +13,7 @@ const Header = () => {
             objectFit={"contain"}
             height={40}
             className="cursor-pointer"
+            alt="pokemon"
           />
         </Link>
         <Link href="/search">
