@@ -12,7 +12,7 @@ const Search = () => {
       const res = await fetch("https://pokeapi.co/api/v2/pokemon/" + searchText)
         .then((response) => response.json())
         .then((newData) => {
-          return newData;
+          return newData || null;
         })
         .catch((err) => {
           setError(true);

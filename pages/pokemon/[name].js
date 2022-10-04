@@ -192,7 +192,9 @@ export async function getStaticProps(context) {
     .catch((err) => {
       console.log(err);
     });
-  return { props: { pokemon, advanceInfo: otherDetails } };
+  return {
+    props: { pokemon: pokemon || null, advanceInfo: otherDetails || null },
+  };
 }
 
 export async function getStaticPaths() {
